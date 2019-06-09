@@ -18,22 +18,23 @@
    
   </header>
   <div class="container-fluid">
-    <p class="text-white text-center "><span id="result">Press any key to start</span></p>
-    
-    
-    
-    <div class="game-board">
-        <div id="win-label" class="badge">Score: <span id="user-score">0</span></div>
-        <div id="totalturns" class="badge"># of guess: <span id="total-turns">0</span></div>
-        
-        <div class="letterSpaces">
-            <span id="letter-space">-------</span>
-          </div>
-        <div class="totalletterChoose"><span id="totalLetter">a,b,c</span></div>
+
+      <div class="jumbotron">
+         <div class="row">
+          <h1 class="display-4" id="result">Press start button to play!!</h1>
+        </div>
+        <div class="roww">
+          <p id='letter-space'></p>
+          <p class="badge">Score: <span id="user-score">0</span></p>
+          <p class="badge">Guess left: <span id="total-turns">0</span></p>
+          <p class="badge">Letters: <span id="totalLetter">0</span></p>
+          
+          <p><a class="btn btn-primary btn-lg" href="#" role="button" id="startButton">Start</a></p>
+      </div>
     </div>
-
-
+          
   </div>
+
   <script src="./assets/javascript/game.js" charset="utf-8"> </script>
 </body>
 </html>

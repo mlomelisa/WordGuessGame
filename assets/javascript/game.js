@@ -5,39 +5,91 @@ let userScore = document.getElementById('user-score');
 let letterspace = document.getElementById('letter-space');
 let totalletterChoose = document.getElementById('totalLetter');
 let totalTurns = document.getElementById('total-turns');
-
-let startMessage = "Guess a letter";
+let startButton = document.getElementById('startButton');
 
 // Array of words
 let wordsArray = ['tokyo','opening','medal','swimming'];
 
-// Array of letters
-
-// let letterArray = ['a','b','c','d','e','f','g','h','i','j','k',
-// 'l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-
 // Pick a random word from the array
 
-let word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+ let word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+ let answerArray = [];
+ let totalletterArray = [];
+ let remainLetters = 0;
 
-//Show how many letters has the word
+ function main() {
+  startButton.addEventListener('click', () => {
+    getWord();  
+    resultMessage.innerHTML = ' Guess a letter!!';
+  })
+ };
 
-var answerArray = [];
-for (let i = 0; i < word.length; i++) {
-  answerArray[i] = '_';
+function getWord() { 
+  for (let i = 0; i < word.length; i++) {
+    answerArray[i] = '_';
+    letterspace.textContent = answerArray.join(" ");
+    }
+    console.log(word);
+   remainGuess();
+   
 }
 
-// Create a variable to hold the number of remaining letters to be guessed
-
-let remainLetters = word.length;
-
-  //  while (remainLetters > 0){
-    letterspace.innerHTML = answerArray.join(" ");
-  //  }
-
+function remainGuess(){
+   remainLetters = word.length;
+   totalTurns.innerHTML = remainLetters;
+   return remainLetters;
+}
 
 
 document.onkeyup = function(event) {
-  let userGuess = event.key;
-  resultMessage.innerHTML = ' Guess a letter!!';
+    let userGuess = event.key;
+      
+      
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
+        console.log(event.keyCode);
+
+        
+    
+        if ( totalletterArray.includes(userGuess) ){
+          resultMessage.innerHTML = 'Already choose that letter!!';
+        } else {
+          if( word.includes(userGuess)) {
+            console.log(userGuess);
+            resultMessage.innerHTML = 'Good work!!';
+            game(userGuess);
+          } else {
+            resultMessage.innerHTML = 'Upss you lose a point!!';
+            remainLetters--;
+            totalTurns.innerHTML = remainLetters;
+          }
+          totalletterArray.push(userGuess);
+
+          totalletterChoose.innerHTML = totalletterArray;
+        
+          console.log(totalletterArray);
+        }
+       
+      } else {
+        resultMessage.innerHTML = 'Please enter only alphabets in lower cases!!';
+      }
 }
+
+  // Function to fill the letter found in the word array
+  function game(userGuess) {
+  
+    for (let j = 0; j < word.length; j++ ) {
+      if (word[j] === userGuess) {
+        answerArray[j] = userGuess;
+        letterspace.innerHTML = answerArray.join(" ");
+        console.log(answerArray);       
+       }        
+    }    
+  }
+
+main();
+
+
+  
+  
+
+
