@@ -4,34 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="./assets/css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Asap&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>WordGuessGame</title>
 </head>
 <body>
-  <header>
+  <header class="container-fluid">
       <div class="text-center">
-          <img id="imageLogo" class="rounded" src="./assets/images/olympic-rings.jpg" alt="olympic-rings">
+          <img id="imageLogo" class="rounded" src="./assets/images/logo.jpg" alt="Tarantino tittle">
         </div>
       <h1>Word Guess Game</h1>
    
   </header>
-  <div class="container-fluid">
-
-      <div class="jumbotron">
-         <div class="row">
-          <h1 class="display-4" id="result">Press start button to play!!</h1>
-        </div>
-        <div class="roww">
-          <p id='letter-space'></p>
-          <p class="badge">Score: <span id="user-score">0</span></p>
-          <p class="badge">Guess left: <span id="total-turns">0</span></p>
-          <p class="badge">Letters: <span id="totalLetter">0</span></p>
-          
-          <p><a class="btn btn-primary btn-lg" href="#" role="button" id="startButton">Start</a></p>
+  <div class="container-fluid main">
+      
+      
+        <div class="container">
+            
+          <h1 class="display-3 text-dark font-weight-bolder" id="result">Press start button to play!!</h1>
+          <h1 class="display-2 text-danger font-weight-bolder" id="resultLose"></h1>
+          <h1 class="display-2 text-success font-weight-bolder" id="resultWin"></h1>
+        
+          <div class="text-center">
+            <button type="button" class="btn btn-success text-center" id='startButton'>Start</button>
+          </div>
+          <p class="display-3 text-center letterselect" id='letter-space'></p>
       </div>
-    </div>
+     
+        <div class="card-group">
+            
+          <div class="card border-dark scoreZone">
+            <div class="card-body">
+              <h4 class="card-title text-center text-danger font-weight-bold">Score</h4>
+              <p class="card-text text-center"><span id="user-score">0</span></p>
+            </div>
+          </div>
+        
+        
+          
+            <div class="card border-dark scoreZone">
+            <div class="card-body">
+              <h4 class="card-title text-center text-danger font-weight-bold">Guess left</h4>
+              <p class="card-text text-center"><span id="total-turns">0</span></p>
+            </div>
+          </div>
+       
+        
+          <div class="card border-dark scoreZone">
+            <div class="card-body">
+              <h4 class="card-title text-center text-danger font-weight-bold">Total Letters select</h4>
+              <p class="card-text text-center"><span id="totalLetter"></span></p>
+            </div>
+          </div>
+        
+      </div>  
           
   </div>
 

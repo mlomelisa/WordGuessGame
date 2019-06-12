@@ -1,32 +1,39 @@
 // Variable definitions
 
 let resultMessage = document.getElementById('result');
+let resultMessageLose = document.getElementById('resultLose');
+let resultMessageWin = document.getElementById('resultWin');
 let userScore = document.getElementById('user-score');
 let letterspace = document.getElementById('letter-space');
 let totalletterChoose = document.getElementById('totalLetter');
 let totalTurns = document.getElementById('total-turns');
 let startButton = document.getElementById('startButton');
-
+let animatedGif = document.getElementById('animated-gif');
 let answerArray = [];
 let totalletterArray = [];
 let remainLetters = 0;
+let score = 0;
 
 
 // Array of words
-let wordsArray = ['tokyo','opening','medal','swimming'];
+let wordsArray = ['reservoir dogs','pulp fiction','jackie brown','kill bill','death proof','inglourious basterds','django unchained','the hateful eight','erase una vez en hollywood'];
 
-// Pick a random word from the array
+// Fill the Answer array with underscore in base string lenght
 
 function getWord(word) {
 
   for (let i = 0; i < word.length; i++) {
-    answerArray[i] = '_';
-    letterspace.textContent = answerArray.join(" ");
-    }
+    if (word[i] === ' '){
+      answerArray[i] = '-';
+   } else {
+     answerArray[i] = '_';
+     letterspace.textContent = answerArray.join(" ");
+     }    
+  }
     remainGuess(word);
-    console.log(word);
- }
+   };
 
+  // 
  function remainGuess(word){
   remainLetters = word.length;
   totalTurns.innerHTML = remainLetters;
@@ -45,8 +52,10 @@ function game(userGuess, word) {
 
 function main() {
     startButton.addEventListener('click', () => {
-    resultMessage.innerHTML = 'Guess a letter!!'; 
+    resultMessage.innerHTML = 'Guess a letter!!';
     let word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+    resultMessageLose.innerHTML = '';
+    resultMessageWin.innerHTML = '';
     totalletterArray = [];
     totalletterChoose.innerHTML = totalletterArray;
     answerArray = [];
@@ -74,10 +83,11 @@ function evualtion(userGuess, word) {
     } 
     else {
          if( word.includes(userGuess)) {
-           console.log(userGuess);
+           
            resultMessage.innerHTML = 'Good work!!';
            game(userGuess,word);
            totalletterArray.push(userGuess);
+           verify(); 
          } else {
            resultMessage.innerHTML = 'Upss you lose a point!!';
            
@@ -95,15 +105,28 @@ function evualtion(userGuess, word) {
   function verify(){
     if (remainLetters > 0){
 
+      if ( !answerArray.includes('_') ) {
+        resultMessage.innerHTML = '';
+        resultMessageWin.innerHTML = 'Great you guess the word!!';
+        score++;
+        userScore.innerHTML = score;
+        
+        setTimeout( clean,  2000);
+      } else{
+
+      }
+
     } else{
-    
-      resultMessage.innerHTML = 'Game Over mmmm!!'
+      resultMessage.innerHTML = '';
+      resultMessageLose.innerHTML = 'Game Over!!'
       setTimeout( clean,  2000);
      }
     }
 
     function clean() {
       document.getElementById('startButton').click();
+      resultMessageLose.innerHTML = '';
+      resultMessageWin.innerHTML = '';
       }
  
  
